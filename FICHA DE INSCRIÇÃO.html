@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INSCRIÇÃO - ENCONTRO COM DEUS</title>
+<style>
+    :root {
+        --primary: #004a99;
+        --accent: #ae00ff;
+        --success: #25d366;
+        --bg: #f0f2f5;
+        --card-bg: #ffffff;
+    }
+
+    body {
+        font-family: 'Segoe UI', Roboto, sans-serif;
+        background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+        background-attachment: fixed;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        text-transform: uppercase;
+    }
+
+    .container {
+        max-width: 600px;
+        width: 100%;
+        background: var(--card-bg);
+        padding: 35px;
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    }
+
+    .header-logo {
+    text-align: center;
+    margin-top: 30px;    /* Aumente este valor (ex: de 20px para 60px) */
+    margin-bottom: 30px; /* Espaço entre a logo e o título */
+}
+    .header-logo img { max-width: 180px; height: auto; }
+
+    p.subtitle {
+        text-align: center;
+        color: var(--primary);
+        font-size: 18px;
+        font-weight: 900;
+        margin-bottom: 30px;
+        letter-spacing: 1px;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 15px;
+    }
+
+    .section {
+        margin-bottom: 25px;
+        padding: 15px;
+        background: #f9f9f9;
+        border-radius: 12px;
+        border-left: 5px solid var(--primary);
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 15px;
+        font-weight: bold;
+        color: #000000;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 14px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-sizing: border-box;
+        font-size: 14px;
+        transition: 0.3s;
+    }
+
+    input:focus {
+        border-color: var(--accent);
+        outline: none;
+        box-shadow: 0 0 8px rgba(174, 0, 255, 0.2);
+    }
+
+    .radio-group {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 100px;
+        margin: 10px 0;
+    }
+
+    .radio-item {
+        background: #fff;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 8px;
+        text-align: center;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .btn-pgto {
+        width: 100%;
+        padding: 20px;
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        transition: 0.3s;
+    }
+
+    .btn-pgto:hover { transform: translateY(-2px); background: #003a7a; }
+
+    /* MODAL DE PAGAMENTO */
+    #modalPagamento {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.85);
+        backdrop-filter: blur(5px);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        background: white;
+        padding: 40px;
+        border-radius: 25px;
+        text-align: center;
+        width: 90%;
+        max-width: 400px;
+    }
+
+    .pix-box {
+        background: #f4f4f4;
+        padding: 15px;
+        border: 2px dashed var(--primary);
+        border-radius: 10px;
+        margin: 20px 0;
+        font-family: monospace;
+        font-size: 11px;
+        word-break: break-all;
+    }
+
+    .btn-whats {
+        background: var(--success);
+        color: white;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 15px;
+    }
+
+    .hidden { display: none; }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header-logo"><img src="logo.png" alt="LOGO"></div>
+    <p class="subtitle">FICHA DE INSCRIÇÃO - ENCONTRO COM DEUS</p>
+    
+    <form id="inscricaoForm">
+        <div class="section">
+            <label>SELECIONE O SEU PRÉDIO</label>
+            <select id="unidade" required>
+                <option value="">SELECIONE...</option>
+                <option value="CENTRO">VIDEIRA CENTRO</option>
+                <option value="ZONA NORTE">VIDEIRA ZONA NORTE</option>
+                <option value="SANTANA">VIDEIRA SANTANA</option>
+            </select>
+        </div>
+
+        <div class="section">
+            <label>NOME DO ENCONTRISTA</label>
+            <input type="text" id="nome" required>
+            <div class="grid-2">
+                <div><label>IDADE</label><input type="number" id="idade" required></div>
+                <div><label>SEXO</label><select id="sexo" required><option value="">...</option><option value="M">MASCULINO</option><option value="F">FEMININO</option></select></div>
+            </div>
+            <label>ESTADO CIVIL</label>
+            <select id="estadoCivil" required>
+                <option value="">SELECIONE...</option>
+                <option value="SOLTEIRO">SOLTEIRO</option>
+                <option value="CASADO">CASADO</option>
+                <option value="SEPARADO">SEPARADO</option>
+                <option value="AMASIADO">AMASIADO</option>
+            </select>
+        </div>
+
+        <div class="section">
+            <label>CONTATO PRINCIPAL</label>
+            <input type="tel" id="celular1" maxlength="15" onkeyup="mascaraTelefone(this)" required>
+            <label>CONTATO 02</label>
+            <input type="tel" id="celular1" maxlength="15" onkeyup="mascaraTelefone(this)" required>
+            
+            <label>ENDEREÇO (RUA E Nº)</label>
+            <input type="text" id="endereco" required>
+            <div class="grid-2">
+                <div><label>BAIRRO</label><input type="text" id="bairro" required></div>
+                <div><label>CIDADE</label><input type="text" id="cidade" required></div>
+            </div>
+            <label>ESTADO</label>
+            <input type="text" id="estado" maxlength="2" placeholder="EX: AP" required>
+        </div>
+
+        <div class="section">
+            <label>JÁ É BATIZADO?</label>
+            <div class="radio-group">
+                <label class="radio-item"><input type="radio" name="batizado" value="SIM" required> SIM</label>
+                <label class="radio-item"><input type="radio" name="batizado" value="NÃO"> NÃO</label>
+            </div>
+            <label>FREQUENTA ALGUMA IGREJA?</label>
+            <div class="radio-group">
+                <label class="radio-item"><input type="radio" name="fIgreja" value="SIM" onclick="toggle('cIgreja', true)"> SIM</label>
+                <label class="radio-item"><input type="radio" name="fIgreja" value="NÃO" onclick="toggle('cIgreja', false)"> NÃO</label>
+            </div>
+            <div id="cIgreja" class="hidden"><input type="text" id="qualIgreja" placeholder="QUAL?"></div>
+
+            <label>FREQUENTA ALGUMA CÉLULA?</label>
+            <div class="radio-group">
+                <label class="radio-item"><input type="radio" name="fCelula" value="SIM" onclick="toggle('cLider', true)"> SIM</label>
+                <label class="radio-item"><input type="radio" name="fCelula" value="NÃO" onclick="toggle('cLider', false)"> NÃO</label>
+            </div>
+            <div id="cLider" class="hidden"><input type="text" id="nomeLider" placeholder="NOME DO LÍDER"></div>
+        </div>
+
+        <div class="section">
+            <label>TOMA ALGUM MEDICAMENTO?</label>
+            <div class="radio-group">
+                <label class="radio-item"><input type="radio" name="med" value="SIM" onclick="toggle('cMed', true)"> SIM</label>
+                <label class="radio-item"><input type="radio" name="med" value="NÃO" onclick="toggle('cMed', false)"> NÃO</label>
+            </div>
+            <div id="cMed" class="hidden"><input type="text" id="qualMed" placeholder="QUAL E HORÁRIO?"></div>
+
+            <label>ALÉRGICO?</label>
+            <div class="radio-group">
+                <label class="radio-item"><input type="radio" name="aler" value="SIM" onclick="toggle('cAler', true)"> SIM</label>
+                <label class="radio-item"><input type="radio" name="aler" value="NÃO" onclick="toggle('cAler', false)"> NÃO</label>
+            </div>
+            <div id="cAler" class="hidden"><input type="text" id="qualAler" placeholder="AO QUÊ?"></div>
+
+<label>RESTRICÃO ALIMENTAR?</label>
+<div class="radio-group">
+    <label class="radio-item"><input type="radio" name="comeTudo" value="SIM" onclick="toggle('cRest', true)"> SIM</label>
+    <label class="radio-item"><input type="radio" name="comeTudo" value="NÃO" onclick="toggle('cRest', false)"> NÃO</label>
+</div>
+<div id="cRest" class="hidden"><input type="text" id="restAlim" placeholder="QUAL A RESTRIÇÃO?"></div>
+        </div>
+
+        <button type="submit" class="btn-pgto">PAGAR E FINALIZAR INSCRIÇÃO</button>
+    </form>
+</div>
+
+<div id="modalPagamento">
+    <div class="modal-content">
+        <h2 style="color: var(--primary);">PAGAMENTO PIX</h2>
+        <p>VALOR: <strong style="font-size: 22px;">R$ 100,00</strong></p>
+        <div class="pix-box" id="codigoPix">365f84e6-2db0-4e9f-a1e5-a4fc57d888df</div>
+        <button class="btn-copy" onclick="copiarPix()">📋 COPIAR CÓDIGO PIX</button>
+        <p style="font-size: 12px; color: red; font-weight: bold;">* PAGUE E CLIQUE ABAIXO PARA ENVIAR O COMPROVANTE.</p>
+        <button onclick="enviarWhats()" class="btn-whats">ENVIAR FICHA + COMPROVANTE</button>
+        <p style="margin-top: 10px;"><a href="#" onclick="fecharModal()" style="font-size: 12px; color: #999;">VOLTAR</a></p>
+    </div>
+</div>
+
+<script>
+    function mascaraTelefone(i) {
+        let v = i.value.replace(/\D/g, "");
+        v = v.replace(/^(\d{2})(\d)/g, "($1) $2");
+        v = v.replace(/(\d{5})(\d)/, "$1-$2");
+        i.value = v;
+    }
+
+    function toggle(id, show) {
+        document.getElementById(id).style.display = show ? 'block' : 'none';
+    }
+
+    function fecharModal() {
+        document.getElementById('modalPagamento').style.display = 'none';
+    }
+
+    function copiarPix() {
+        const cod = document.getElementById('codigoPix').innerText;
+        navigator.clipboard.writeText(cod).then(() => {
+            alert("CÓDIGO PIX COPIADO!");
+        });
+    }
+
+    document.getElementById('inscricaoForm').onsubmit = function(e) {
+        e.preventDefault();
+        document.getElementById('modalPagamento').style.display = 'flex';
+    };
+
+    function enviarWhats() {
+        // Função auxiliar para pegar valor ou 'N/A'
+        const v = (id) => (document.getElementById(id).value || 'N/A').toUpperCase();
+        // Função auxiliar para pegar radio
+        const r = (name) => (document.querySelector(`input[name="${name}"]:checked`)?.value || 'NÃO').toUpperCase();
+
+        let msg = `*JUNHO 2026 - ENCONTRO COM DEUS*%0A%0A`;
+        msg += `*VIDEIRA:* ${v('unidade')}%0A`;
+        msg += `*NOME:* ${v('nome')}%0A`;
+        msg += `*IDADE:* ${v('idade')} ANOS%0A`;
+        msg += `*SEXO:* ${v('sexo')}%0A`;
+        msg += `*ESTADO CIVIL:* ${v('estadoCivil')}%0A`;
+        msg += `*CONTATO:* ${v('celular1')}%0A`;
+        msg += `*ENDEREÇO:* ${v('endereco')}, ${v('bairro')}%0A`;
+        msg += `*CIDADE/UF:* ${v('cidade')} - ${v('estado')}%0A%0A`;
+        msg += `*BATIZADO:* ${r('batizado')}%0A`;
+        msg += `*IGREJA:* ${r('fIgreja')} (${v('qualIgreja')})%0A`;
+        msg += `*CÉLULA:* ${r('fCelula')} (LÍDER: ${v('nomeLider')})%0A%0A`;
+        msg += `*MEDICAMENTO:* ${r('med')} (${v('qualMed')})%0A`;
+        msg += `*ALÉRGICO:* ${r('aler')} (${v('qualAler')})%0A`;
+        msg += `*RESTRIÇÃO:* ${r('comeTudo')} (${v('restAlim')})%0A%0A`;
+
+        msg += `*✅ VALOR PAGO: R$ 100,00*%0A`;
+        msg += `*📎 ANEXANDO COMPROVANTE ABAIXO...*`;
+
+        const numeroDestino = "5596991168307"; 
+        const url = `https://api.whatsapp.com/send?phone=${numeroDestino}&text=${msg}`;
+
+        window.open(url, '_blank');
+        location.reload();
+    }
+</script>
+</body>
+</html>
