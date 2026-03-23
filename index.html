@@ -166,6 +166,48 @@
     }
 
     .hidden { display: none; }
+
+    /* AJUSTES PARA TELEMÓVEL */
+@media (max-width: 480px) {
+    body {
+        padding: 10px; /* Diminui a borda colorida em volta do branco */
+        padding-top: 40px; /* Diminui o espaço no topo para a logo não descer demais */
+    }
+
+    .container, .main-card {
+        padding: 20px; /* Diminui o espaço interno do cartão branco */
+        border-radius: 15px; /* Arredondamento mais discreto */
+    }
+
+    h2, .title {
+        font-size: 18px; /* Título menor para não quebrar linha */
+        margin-bottom: 20px;
+    }
+
+    input, select {
+        padding: 10px; /* Caixas de texto mais finas */
+        font-size: 14px; /* Letra menor dentro das caixas */
+    }
+
+    label {
+        font-size: 10px; /* Títulos dos campos (Nome, Bairro) menores */
+        margin-bottom: 4px;
+    }
+
+    .radio-group, .radio-box {
+        gap: 5px; /* Aproxima os botões SIM e NÃO */
+    }
+
+    .radio-item, .radio-box label {
+        padding: 8px; /* Balões do SIM/NÃO mais compactos */
+        font-size: 11px;
+    }
+
+    .btn-pgto, .btn-submit {
+        padding: 15px; /* Botão final menos exagerado */
+        font-size: 16px;
+    }
+}
 </style>
 </head>
 <body>
